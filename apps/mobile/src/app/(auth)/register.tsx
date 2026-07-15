@@ -9,7 +9,8 @@ import {
   View,
 } from 'react-native';
 import { router } from 'expo-router';
-import { registerPatient } from '@/services/auth.service';
+import { registerWithEmail } from '@/services/auth.service';
+import AuthModalScreen from '../auth-modal';
 
 
 
@@ -22,14 +23,13 @@ export default function RegisterScreen() {
 
   const handleRegister = async () => {
     if (!displayName.trim() || !email.trim() || !password) {
-      Alert.alert('Thông báo', 'Vui lòng nhập đầy đủ thông tin.');
+      AuthModalScreen(
+      );
       return;
     }
 
     if (password.length < 6) {
-      Alert.alert(
-        'Mật khẩu không hợp lệ',
-        'Mật khẩu phải có ít nhất 6 ký tự.',
+      AuthModalScreen(
       );
       return;
     }
@@ -37,14 +37,14 @@ export default function RegisterScreen() {
     try {
       setIsSubmitting(true);
 
-      await registerPatient({
+      await registerWithEmail({
         displayName,
-        phoneNumber,
         email,
         password,
       });
 
-      Alert.alert('Thành công', 'Đăng ký tài khoản thành công.');
+      AuthModalScreen(
+      );
       router.replace('/');
     } catch (error) {
       const message =
@@ -52,7 +52,8 @@ export default function RegisterScreen() {
           ? error.message
           : 'Không thể đăng ký tài khoản.';
 
-      Alert.alert('Đăng ký thất bại', message);
+      AuthModalScreen(
+      );
     } finally {
       setIsSubmitting(false);
     }
