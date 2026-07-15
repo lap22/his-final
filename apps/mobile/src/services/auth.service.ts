@@ -24,7 +24,7 @@ export interface LoginInput {
   password: string;
 }
 
-export async function registerPatient({
+export async function registerWithEmail({
   displayName,
   phoneNumber,
   email,

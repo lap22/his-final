@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { router } from 'expo-router';
 import { loginWithEmail } from '@/services/auth.service';
+import AuthModalScreen from '../auth-modal';
 
 
 
@@ -20,8 +21,7 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     if (password.length < 6) {
-      Alert.alert(
-        'Mật khẩu sai',
+      AuthModalScreen(
       );
       return;
     }
@@ -33,7 +33,8 @@ export default function LoginScreen() {
         password,
       });
 
-      Alert.alert('Thành công', 'Đăng nhập thành công.');
+      AuthModalScreen(
+      );
       router.replace('/');
     } catch (error) {
       const message =
