@@ -5,6 +5,7 @@ export interface LoginFormErrors {
 
 export interface RegisterFormErrors extends LoginFormErrors {
   fullName?: string;
+  phoneNumber?: string;
   confirmPassword?: string;
 }
 
@@ -34,6 +35,7 @@ export function validateLoginForm(
 export function validateRegisterForm(
   fullName: string,
   email: string,
+  phoneNumber: string,
   password: string,
   confirmPassword: string,
 ): RegisterFormErrors {
@@ -45,6 +47,12 @@ export function validateRegisterForm(
     errors.fullName = 'Vui lòng nhập họ và tên.';
   } else if (fullName.trim().length < 2) {
     errors.fullName = 'Họ và tên phải có ít nhất 2 ký tự.';
+  }
+
+  if (!phoneNumber.trim()) {
+    errors.phoneNumber = 'Vui lòng nhập số điện thoại.';
+  } else if (!/^\d{10,11}$/.test(phoneNumber.trim())) {
+    errors.phoneNumber = 'Số điện thoại không đúng định dạng.';
   }
 
   if (!confirmPassword) {
