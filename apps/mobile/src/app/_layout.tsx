@@ -16,7 +16,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
 
         <Stack.Screen
-          name="(tabs)"
+          name="tabs"
           options={{
             headerShown: false,
           }}
@@ -25,7 +25,16 @@ export default function RootLayout() {
         <Stack.Screen
           name="auth-modal"
           options={{
-            presentation: 'modal',
+            presentation: 'transparentModal',
+            animation: 'slide_from_bottom',
+            headerShown: false,
+            gestureEnabled: true,
+          }}
+        />
+        <Stack.Screen
+          name="forgot-password"
+          options={{
+            presentation: 'transparentModal',
             animation: 'slide_from_bottom',
             headerShown: false,
             gestureEnabled: true,

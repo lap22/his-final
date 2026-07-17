@@ -18,6 +18,7 @@ interface AuthInputProps extends TextInputProps {
   icon:
     | 'mail-outline'
     | 'lock-closed-outline'
+    | 'call-outline'
     | 'person-outline';
   isPassword?: boolean;
 }

@@ -22,7 +22,7 @@ export default function WelcomeScreen() {
           style={styles.primaryButton}
           onPress={() =>
             router.push({
-              pathname: '/(auth)/login',
+              pathname: '/auth-modal',
               params: {
                 mode: 'login',
               },
@@ -38,7 +38,7 @@ export default function WelcomeScreen() {
           style={styles.secondaryButton}
           onPress={() =>
             router.push({
-              pathname: '/(auth)/register',
+              pathname: '/auth-modal',
               params: {
                 mode: 'register',
               },

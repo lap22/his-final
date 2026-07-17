@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -12,11 +13,14 @@ import {
 
 import { auth, db } from '@/config/firebase';
 
+type AuthPayload = {email: string; password: string; confirmPassword: string; displayName: string; phoneNumber?: string};
+type ResetPasswordPayload = {email: string};
 export interface RegisterInput {
   displayName: string;
   phoneNumber?: string;
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 export interface LoginInput {
@@ -24,14 +28,20 @@ export interface LoginInput {
   password: string;
 }
 
+
 export async function registerWithEmail({
   displayName,
   phoneNumber,
   email,
   password,
-}: RegisterInput) {
+  confirmPassword,
+}: AuthPayload) {
   const normalizedEmail = email.trim().toLowerCase();
   const normalizedName = displayName.trim();
+  const normalizedPhoneNumber = phoneNumber?.trim() || null;
+  if (password !== confirmPassword) {
+    throw new Error('Passwords do not match');
+  }
 
   const credential = await createUserWithEmailAndPassword(
     auth,
@@ -47,7 +57,7 @@ export async function registerWithEmail({
     uid: credential.user.uid,
     email: normalizedEmail,
     displayName: normalizedName,
-    phoneNumber: phoneNumber?.trim() || null,
+    phoneNumber: normalizedPhoneNumber,
     photoURL: null,
     role: 'patient',
     status: 'active',
@@ -75,4 +85,15 @@ export async function loginWithEmail({
 
 export async function logout() {
   await signOut(auth);
+}
+export async function resetPassword({
+  email,
+}: ResetPasswordPayload): Promise<void> {
+  const normalizedEmail = email.trim().toLowerCase();
+
+  if (!normalizedEmail) {
+    throw new Error('Email không được để trống.');
+  }
+
+  await sendPasswordResetEmail(auth, normalizedEmail);
 }
