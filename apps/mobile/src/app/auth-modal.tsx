@@ -131,13 +131,15 @@ export default function AuthModalScreen() {
 
     if (Object.keys(loginErrors).length > 0) {
       setErrors(loginErrors);
-      return;
+      return false;
     }
 
     await loginWithEmail({
       email,
       password,
     });
+
+    return true;
   }
 
   async function handleRegister() {
@@ -151,7 +153,7 @@ export default function AuthModalScreen() {
 
     if (Object.keys(registerErrors).length > 0) {
       setErrors(registerErrors);
-      return;
+      return false;
     }
 
     await registerWithEmail({
@@ -161,6 +163,8 @@ export default function AuthModalScreen() {
       confirmPassword,
       phoneNumber,
     });
+
+    return true;
   }
 
   async function handleSubmit() {
@@ -170,10 +174,12 @@ export default function AuthModalScreen() {
     setIsSubmitting(true);
 
     try {
-      if (isLogin) {
-        await handleLogin();
-      } else {
-        await handleRegister();
+      const isSubmitSuccessful = isLogin
+        ? await handleLogin()
+        : await handleRegister();
+
+      if (!isSubmitSuccessful) {
+        return;
       }
 
       setNoticeModal({
