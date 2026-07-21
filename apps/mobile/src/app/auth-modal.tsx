@@ -18,13 +18,14 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import AuthInput from "@/components/auth/AuthInput";
 import { loginWithEmail, registerWithEmail } from "@/services/auth.service";
-import { getFirebaseAuthError } from "@/utils/firebase-error";
+import { getAuthErrorMessage } from "@/utils/firebase-error";
 import {
   LoginFormErrors,
   RegisterFormErrors,
   validateLoginForm,
   validateRegisterForm,
 } from "@/utils/validation";
+import { auth } from "@/config/firebase";
 
 type AuthMode = "login" | "register";
 
@@ -189,12 +190,13 @@ export default function AuthModalScreen() {
           : "Đăng ký tài khoản thành công.",
         actionLabel: "Tiếp tục",
         onConfirm: () => {
-          router.replace("/");
+          router.replace("/profiles");
         },
+        
       });
     } catch (error) {
       console.error("Authentication error:", error);
-      setGeneralError(getFirebaseAuthError(error));
+      setGeneralError(getAuthErrorMessage(error));
     } finally {
       setIsSubmitting(false);
     }
