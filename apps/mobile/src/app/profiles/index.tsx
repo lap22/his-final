@@ -131,8 +131,8 @@ console.log('Profiles failure count:', failureCount);
           <ProfileCard
             profile={item}
             onPress={() =>
-              router.push({
-                pathname: '/profiles/[profileId]',
+              router.replace({
+                pathname: '/(tabs)',
                 params: {
                   profileId: item.id,
                 },
