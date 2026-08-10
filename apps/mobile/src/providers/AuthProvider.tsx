@@ -13,7 +13,9 @@ import {
 import { auth } from '@/config/firebase';
 
 interface AuthContextType {
+  firebaseUser: User | null;
   user: User | null;
+  isAuthenticated: boolean;
   isAuthLoading: boolean;
 }
 
@@ -38,7 +40,9 @@ export default function AuthProvider({
   return (
     <AuthContext.Provider
       value={{
+        firebaseUser: user,
         user,
+        isAuthenticated: Boolean(user),
         isAuthLoading,
       }}
     >
