@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router, type Href } from 'expo-router';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 import {
   FlatList,
@@ -241,7 +242,7 @@ export default function HomeScreen() {
   }, []);
 
   const handleOpenAppointmentModal = useCallback(() => {
-    setAppointmentModalVisible(true);
+    router.push('/appointments/create' as Href);
   }, []);
 
   const handleCloseAppointmentModal = useCallback(() => {
