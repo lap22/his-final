@@ -11,7 +11,7 @@ import { homeColors } from '@/constants/colors';
 import {
   statusLabels,
   statusStyles,
-} from '@/modules/appointment/components/AppointmentCard';
+} from '@/modules/appointment/constants/appointment-status';
 import { useAppointment } from '@/modules/appointment/hooks/useAppointments';
 import { useRealtimeAppointment } from '@/modules/appointment/hooks/useRealtimeAppointments';
 import { useAuth } from '@/providers/AuthProvider';
