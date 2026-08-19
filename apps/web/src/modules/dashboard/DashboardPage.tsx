@@ -1,13 +1,11 @@
-import { PageHeader } from '../../components'
+import { Box, Typography } from '@mui/material';
 
-export function DashboardPage() {
+export default function DashboardPage() {
   return (
-    <section>
-      <PageHeader
-        title="Dashboard"
-        description="Overview of hospital operations and key metrics."
-      />
-    </section>
-  )
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4">
+        Admin Dashboard
+      </Typography>
+    </Box>
+  );
 }
-
