@@ -1,2 +1,2 @@
-export { DoctorsPage } from './DoctorsPage'
+export { DoctorsPage } from './pages/DoctorsPage'
 

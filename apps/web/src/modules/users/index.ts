@@ -1,2 +1,2 @@
-export { UsersPage } from './UsersPage'
+export { UsersPage } from './pages/UsersPage'
 

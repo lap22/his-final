@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material'
 
-export default function DashboardPage() {
+export function DashboardPage() {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4">
         Admin Dashboard
       </Typography>
     </Box>
-  );
+  )
 }
