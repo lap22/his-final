@@ -1,2 +1,2 @@
-export { DepartmentsPage } from './DepartmentsPage'
+export { default as DepartmentsPage } from './pages/DepartmentsPage'
 

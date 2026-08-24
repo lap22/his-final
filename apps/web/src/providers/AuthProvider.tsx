@@ -30,6 +30,8 @@ export function AuthProvider({
     const unsubscribe = onAuthStateChanged(
       auth,
       async currentUser => {
+        setIsLoading(true);
+
         try {
           setFirebaseUser(currentUser);
 

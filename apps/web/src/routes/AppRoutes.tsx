@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { DashboardLayout } from '../layouts/DashboardLayout'
+import DashboardLayout from '../layouts/admin/DashboardLayout'
 import { AppointmentsPage } from '../modules/appointments'
 import { LoginPage } from '../modules/auth'
 import { DashboardPage } from '../modules/dashboard'

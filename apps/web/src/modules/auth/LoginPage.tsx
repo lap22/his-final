@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -10,13 +10,21 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import { auth } from '../../config/firebase';
+import { useAuth } from '../../providers/useAuth';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { isAdmin } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isAdmin) {
+      navigate('/admin/dashboard', { replace: true });
+    }
+  }, [isAdmin, navigate]);
 
   const handleLogin = async () => {
     try {
@@ -27,8 +35,6 @@ export default function LoginPage() {
         email.trim().toLowerCase(),
         password,
       );
-
-      navigate('/dashboard');
     } catch (error) {
       console.error(error);
       window.alert('Email hoặc mật khẩu không chính xác.');
