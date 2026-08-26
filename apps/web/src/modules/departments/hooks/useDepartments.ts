@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { Department } from './types/types';
-import { subscribeDepartments } from './services/department.service';
+import { subscribeDepartments } from '../services/department.service';
+import type { Department } from '../types/department.types';
     
 
 export function useDepartments() {

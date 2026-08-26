@@ -10,9 +10,9 @@ import {
 } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import type { Department } from './types/types';
-import { departmentSchema, type DepartmentSchema } from './department.schema';
-import { createDepartment, updateDepartment } from './services/department.service';
+import type { Department } from '../types/department.types';
+import { departmentSchema, type DepartmentSchema } from '../department.schema';
+import { createDepartment, updateDepartment } from '../services/department.service';
 
 
 

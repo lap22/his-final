@@ -18,10 +18,10 @@ import {
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { useDepartments } from '../useDepartments';
-import type { Department } from '../types/types';
+import DepartmentFormDialog from '../components/DepartmentFormDialog';
+import { useDepartments } from '../hooks/useDepartments';
+import type { Department } from '../types/department.types';
 import { updateDepartmentStatus } from '../services/department.service';
-import DepartmentFormDialog from '../DepartmentFormDialog';
 
 
 
