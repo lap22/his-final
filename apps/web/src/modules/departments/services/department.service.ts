@@ -9,7 +9,11 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from '../../../config/firebase';
-import type { Department, DepartmentFormValues, DepartmentStatus } from '../types/types';
+import type {
+  Department,
+  DepartmentFormValues,
+  DepartmentStatus,
+} from '../types/department.types';
 
 
 
